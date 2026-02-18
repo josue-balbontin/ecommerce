@@ -1,0 +1,17 @@
+@if(error==false){
+    @for (item of products; track item.id) {
+    <div class="product-card" (click)="goToProduct(item.id)">
+        <img [src]="item.imagen" alt="{{ item.nombre }}" class="product-image" />
+        <h3>{{ item.nombre }}</h3>
+        <p>Precio: ${{ item.precio }}</p>
+        <p>Marca: {{ item.marca }}</p>
+    </div>
+    }
+}
+@else {
+    <app-error
+    [error]="'no se pudo acceder intente más tarde.'"
+
+    ></app-error>
+}
+

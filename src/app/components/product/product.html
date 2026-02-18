@@ -1,0 +1,50 @@
+@if(loading){
+    <p>Cargando...</p>
+}
+@else if(product){
+    <div class="product-detail" >
+
+    <div class="product-container">
+        <div class="product-image-section">
+        <img [src]="product.imagen" [alt]="product.nombre" class="product-image-large" />
+        </div>
+        
+        <div class="product-info-section">
+        <h1 class="product-title">{{ product.nombre }}</h1>
+        
+        <p class="product-brand">Marca: <span>{{ product.marca }}</span></p>
+        
+        <div class="product-price">
+            <span class="price-label">Precio:</span>
+            <span class="price-value">${{ product.precio }}</span>
+        </div>
+        
+        <div class="product-stock" [class.low-stock]="product.stock < 10">
+            <span class="stock-label">Stock disponible:</span>
+            <span class="stock-value">{{ product.stock }} unidades</span>
+        </div>
+        
+        <div class="product-description">
+            <h3>Descripción</h3>
+            <p>{{ product.descripcion }}</p>
+        </div>
+        
+        <button (click)="agregarAlCarrito()" class="add-to-cart-button">Agregar al carrito</button>
+        </div>
+    </div>
+    </div>
+    @if(error){
+        <app-error
+        [error]="'No hay stock disponible intente más tarde'"
+        (accion)="aceptarerror()"
+        ></app-error>
+    }
+
+}
+@else {
+    <app-error
+    [error]="'No se pudo obtener la información intente más tarde'"
+    (accion)="goHome()"
+    >
+    </app-error>
+}
