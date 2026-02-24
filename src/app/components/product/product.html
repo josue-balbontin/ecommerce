@@ -16,7 +16,7 @@
         
         <div class="product-price">
             <span class="price-label">Precio:</span>
-            <span class="price-value">${{ product.precio }}</span>
+            <span class="price-value">Bs{{ product.precio }}</span>
         </div>
         
         <div class="product-stock" [class.low-stock]="product.stock < 10">

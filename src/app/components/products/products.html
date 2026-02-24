@@ -1,11 +1,13 @@
 @if(error==false){
     @for (item of products; track item.id) {
-    <div class="product-card" (click)="goToProduct(item.id)">
-        <img [src]="item.imagen" alt="{{ item.nombre }}" class="product-image" />
-        <h3>{{ item.nombre }}</h3>
-        <p>Precio: ${{ item.precio }}</p>
-        <p>Marca: {{ item.marca }}</p>
-    </div>
+    @if(item.stock > 0) {
+            <div class="product-card" (click)="goToProduct(item.id)">
+            <img [src]="item.imagen" alt="{{ item.nombre }}" class="product-image" />
+            <h3>{{ item.nombre }}</h3>
+            <p>Precio: Bs{{ item.precio }}</p>
+            <p>Marca: {{ item.marca }}</p>
+        </div>
+        }
     }
 }
 @else {
