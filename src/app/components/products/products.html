@@ -6,6 +6,7 @@
             <h3>{{ item.nombre }}</h3>
             <p>Precio: Bs{{ item.precio }}</p>
             <p>Marca: {{ item.marca }}</p>
+                <button class="add-button" (click)="$event.stopPropagation(); goToProduct(item.id)">Ver detalles</button>
         </div>
         }
     }

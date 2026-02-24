@@ -1,25 +1,42 @@
 nav {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   border-bottom: 2px solid #dee2e6;
+}
+
+.logo {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #0f172a;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  font-family: inherit;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.75rem;
 }
 
 a {
   display: inline-block;
   padding: 10px 20px;
   text-decoration: none;
-  color: #007bff;
+  color: #1f2937;
   font-weight: 600;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
   user-select: none;
 }
 
 a:hover {
-  background-color: #007bff;
+  background-color: #16a34a;
   color: white;
 }
 

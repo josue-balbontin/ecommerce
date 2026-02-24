@@ -1,5 +1,8 @@
-
 <nav>
-  <a (click)="irACarrito()">Carrito ({{obtenerCantidadCarrito()}})</a>
-  <a (click)="irAProductos()">Productos</a>
+  <button class="logo" (click)="irAProductos()">EcoMarket</button>
+
+  <div class="nav-links">
+    <a (click)="irAProductos()">Productos</a>
+    <a (click)="irACarrito()">Carrito ({{ obtenerCantidadCarrito() }})</a>
+  </div>
 </nav>

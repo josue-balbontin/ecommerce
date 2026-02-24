@@ -15,7 +15,11 @@ export class Products {
   products : MProduct[] = [];
   error : boolean = false;
   
-  constructor( private router: Router , private supabase: Supabase, private cdr: ChangeDetectorRef) {
+  constructor(
+    private router: Router,
+    private supabase: Supabase,
+    private cdr: ChangeDetectorRef
+  ) {
     this.supabase.obtenerPorductos().then(products => {
       this.products = products;
     }).catch(error => {
