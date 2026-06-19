@@ -24,10 +24,7 @@ export class Products {
   ) {
     this.supabase.obtenerPorductos().then(products => {
       this.products = products;
-      if(this.products.length === 0) {
-        this.mensajeVacio = "Aun no hay productos disponibles en la tienda.";
-      }
-    
+      this.EstaVacio(this.products);
     }).catch(error => {
     console.error('Error al obtener productos:', error);
     this.error = true;
@@ -36,6 +33,15 @@ export class Products {
   });
 
   };
+
+  EstaVacio(products: MProduct[]): boolean {
+     if(this.products.length === 0) {
+        this.mensajeVacio = "Aun no hay productos disponibles en la tienda.";
+        return true;
+      }
+      return false;
+
+  }
 
 
   goToProduct(id: number): void {
