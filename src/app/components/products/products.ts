@@ -14,6 +14,7 @@ import { Supabase } from '../../services/supabase/supabase';
 export class Products {
   products : MProduct[] = [];
   error : boolean = false;
+  mensajeError : string = 'No se pudo acceder, intente más tarde';
   
   constructor(
     private router: Router,
