@@ -13,7 +13,7 @@ export class Navbard {
 
 
   obtenerCantidadCarrito(): number {
-    return this.carritodata.obtenerCantidad();
+    return this.carritodata.obtenerCantidadTotal();
   }
 
   irACarrito(): void {
