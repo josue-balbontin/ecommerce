@@ -12,8 +12,6 @@ export interface ItemCarrito {
 export class DataCarrito {
   private carrito: Map<number, ItemCarrito> = new Map();
 
-  constructor() {}
-
   agregarProducto(producto: MProduct, cantidad: number = 1): void {
     const item = this.carrito.get(producto.id);
     
@@ -22,8 +20,6 @@ export class DataCarrito {
     } else {
       this.carrito.set(producto.id, { producto, cantidad });
     }
-    console.log('Producto agregado. Carrito actual:', this.carrito);
-    console.log('Tamaño del carrito:', this.carrito.size);
   }
 
   removerProducto(idProducto: number): void {
@@ -50,7 +46,6 @@ export class DataCarrito {
 
   obtenerItems(): ItemCarrito[] {
     const items = Array.from(this.carrito.values());
-    console.log('obtenerItems llamado. Items:', items);
     return items;
   }
 
@@ -83,11 +78,5 @@ export class DataCarrito {
     return this.carrito.get(idProducto);
   }
 
-  obtenerCantidad(){
-    let cantidadTotal = 0;
-    this.carrito.forEach(item => {
-      cantidadTotal += item.cantidad;
-    });
-    return cantidadTotal;
-  }
+
 }
