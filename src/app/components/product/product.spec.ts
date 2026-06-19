@@ -153,4 +153,23 @@ describe('Componente Product', () => {
     expect(component.mensajeerror).toBe('no hay stock disponible intente más tarde');
   });
 
+  it( 'Producto eliminado justo cuando entra a la pantalla de detalle'  , async ()=>{
+    /*
+    Dado que selecciono un producto que fue eliminado por el administrador hace unos segundos, cuando carga la pantalla de detalle,
+     entonces veo un mensaje "El producto ya no está disponible".
+    */ 
+
+    mockSupabase.obtenerProductoPorId.mockResolvedValue(null);
+
+    const component = new Product(mockSupabase, mockActivatedRoute, mockRouter, mockCarritoService, mockCdr);
+    component.ngOnInit();
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(component.product).toBeNull();
+    expect(component.error).toBe(true);
+    expect(component.mensajeerror).toBe('El producto ya no está disponible');
+
+
+  })
+
 });
