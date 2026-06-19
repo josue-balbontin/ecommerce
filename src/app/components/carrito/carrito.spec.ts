@@ -18,7 +18,8 @@ describe('Componente Carrito (HU-04)', () => {
       disminuirCantidad: vi.fn(),
       removerProducto: vi.fn(),
       limpiarCarrito: vi.fn(),
-      estaVacio: vi.fn()
+      estaVacio: vi.fn(),
+      obtenerItem: vi.fn()
     };
   });
 
@@ -32,6 +33,8 @@ describe('Componente Carrito (HU-04)', () => {
     mockCarritoService.obtenerItems.mockReturnValue(itemsSimulados);
 
     const component = new Carrito(mockCarritoService);
+    mockCarritoService.obtenerItem.mockReturnValue({ producto: producto, cantidad: 2 });
+
     component.ngOnInit(); 
 
     component.aumentarCantidad(1);

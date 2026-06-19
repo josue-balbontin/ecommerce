@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataCarrito, ItemCarrito } from '../../services/Carrito/data-carrito';
+import { MProduct } from '../../models/Product';
 
 @Component({
   selector: 'app-carrito',
@@ -11,6 +12,7 @@ import { DataCarrito, ItemCarrito } from '../../services/Carrito/data-carrito';
 export class Carrito implements OnInit {
   items: ItemCarrito[] = [];
   total: number = 0;
+
 
   constructor(private carritoService: DataCarrito) {}
 
@@ -28,22 +30,20 @@ export class Carrito implements OnInit {
   }
 
   validarStock(idProducto: number) {
-     this.carritoService.obtenerItems().map(item => {
-      if (item.producto.id === idProducto) {
-        if (item.cantidad +1 > item.producto.stock) {
-            return false; 
-        }
-        else{
-          return true; 
-        }
+    const item = this.carritoService.obtenerItem(idProducto);
+    if(item){
+      const { producto , cantidad }  = item; 
+      if(cantidad >= producto.stock){
+        return false;
       }
-       return true; 
-    } 
-    );    
+    }
+    return true;
+    
+        
   }
 
   aumentarCantidad(idProducto: number): void {
-    if(this.validarStock(idProducto)! == true){
+    if(this.validarStock(idProducto)! === true){
       this.carritoService.aumentarCantidad(idProducto);
       this.actualizarCarrito();
     }

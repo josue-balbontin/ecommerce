@@ -79,6 +79,10 @@ export class DataCarrito {
     return this.carrito.size === 0;
   }
 
+  obtenerItem(idProducto: number): ItemCarrito | undefined {
+    return this.carrito.get(idProducto);
+  }
+
   obtenerCantidad(){
     let cantidadTotal = 0;
     this.carrito.forEach(item => {
