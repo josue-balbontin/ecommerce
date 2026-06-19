@@ -72,7 +72,7 @@ describe('Componente Products ', () => {
     expect(component.products.length).toBe(0);
     expect(component.error).toBe(false);
 
-    expect(component.mensajeError).toBe("Aun no hay productos disponibles en la tienda."); 
+    expect(component.mensajeVacio).toBe("Aun no hay productos disponibles en la tienda."); 
 
 
   });

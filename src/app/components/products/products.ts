@@ -15,6 +15,7 @@ export class Products {
   products : MProduct[] = [];
   error : boolean = false;
   mensajeError : string = 'No se pudo acceder, intente más tarde';
+  mensajeVacio : string = '';
   
   constructor(
     private router: Router,
@@ -23,6 +24,10 @@ export class Products {
   ) {
     this.supabase.obtenerPorductos().then(products => {
       this.products = products;
+      if(this.products.length === 0) {
+        this.mensajeVacio = "Aun no hay productos disponibles en la tienda.";
+      }
+    
     }).catch(error => {
     console.error('Error al obtener productos:', error);
     this.error = true;
@@ -31,7 +36,8 @@ export class Products {
   });
 
   };
-  
+
+
   goToProduct(id: number): void {
     this.router.navigate(['/product', id]);
   }

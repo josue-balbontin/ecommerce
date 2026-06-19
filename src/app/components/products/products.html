@@ -1,15 +1,22 @@
 @if(error==false){
-    @for (item of products; track item.id) {
-    @if(item.stock > 0) {
-            <div class="product-card" (click)="goToProduct(item.id)">
-            <img [src]="item.imagen" alt="{{ item.nombre }}" class="product-image" />
-            <h3>{{ item.nombre }}</h3>
-            <p>Precio: Bs{{ item.precio }}</p>
-            <p>Marca: {{ item.marca }}</p>
-                <button class="add-button" (click)="$event.stopPropagation(); goToProduct(item.id)">Ver detalles</button>
-        </div>
+    @if(mensajeVacio !== '') {
+       <h1>{{ mensajeVacio }}</h1>
+    }
+    @else {
+        @for (item of products; track item.id) {
+            @if(item.stock > 0) {
+                    <div class="product-card" (click)="goToProduct(item.id)">
+                    <img [src]="item.imagen" alt="{{ item.nombre }}" class="product-image" />
+                    <h3>{{ item.nombre }}</h3>
+                    <p>Precio: Bs{{ item.precio }}</p>
+                    <p>Marca: {{ item.marca }}</p>
+                        <button class="add-button" (click)="$event.stopPropagation(); goToProduct(item.id)">Ver detalles</button>
+                </div>
+                }
         }
     }
+
+   
 }
 @else {
     <app-error
