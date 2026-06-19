@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { MProduct } from '../../models/Product';
 import {  Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Supabase } from '../../services/supabase/supabase';
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
-export class Products {
+export class Products implements OnInit {
   products : MProduct[] = [];
   error : boolean = false;
   mensajeError : string = 'No se pudo acceder, intente más tarde';
@@ -21,18 +21,19 @@ export class Products {
     private router: Router,
     private supabase: Supabase,
     private cdr: ChangeDetectorRef
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.supabase.obtenerPorductos().then(products => {
       this.products = products;
       this.EstaVacio(this.products);
     }).catch(error => {
-    console.error('Error al obtener productos:', error);
-    this.error = true;
+      console.error('Error al obtener productos:', error);
+      this.error = true;
     }).finally(() => {
-    this.cdr.detectChanges();
-  });
-
-  };
+      this.cdr.detectChanges();
+    });
+  }
 
   EstaVacio(products: MProduct[]): boolean {
      if(this.products.length === 0) {
