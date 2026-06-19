@@ -35,7 +35,7 @@
     </div>
     @if(error){
         <app-error
-        [error]="'No hay stock disponible intente más tarde'"
+        [error]="mensajeerror"
         (accion)="aceptarerror()"
         ></app-error>
     }

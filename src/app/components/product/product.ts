@@ -47,6 +47,7 @@ export class Product {
     if (this.product) {
       if(this.product.stock <= 0){
         this.error = true;
+        this.mensajeerror = 'no hay stock disponible intente más tarde';
       }
       else{
         this.carritoService.agregarProducto(this.product, 1);
