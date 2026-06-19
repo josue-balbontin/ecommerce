@@ -21,6 +21,25 @@ describe('Componente Carrito (HU-04)', () => {
     };
   });
 
+  it('Aumentar cantidad de un producto en carrito superando stock displonible no permite  ', () => {
+
+    const producto: MProduct = { 
+      id: 1, nombre: 'Zapatillas', precio: 100, stock: 2, descripcion: 'Desc', marca: 'Nike', imagen: 'img.png' 
+    };
+    const itemsSimulados: ItemCarrito[] = [ { producto: producto, cantidad: 2 } ];
+
+    mockCarritoService.obtenerItems.mockReturnValue(itemsSimulados);
+
+    const component = new Carrito(mockCarritoService);
+    component.ngOnInit(); 
+
+    component.aumentarCantidad(1);
+
+    expect(mockCarritoService.aumentarCantidad).not.toHaveBeenCalled();
+
+    expect(component.errorStock).toBe(true);
+
+  });
 
 
 });
