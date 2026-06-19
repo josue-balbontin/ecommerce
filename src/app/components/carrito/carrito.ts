@@ -27,9 +27,28 @@ export class Carrito implements OnInit {
     console.log('Carrito actualizado - Items:', this.items.length);
   }
 
+  validarStock(idProducto: number) {
+     this.carritoService.obtenerItems().map(item => {
+      if (item.producto.id === idProducto) {
+        if (item.cantidad +1 > item.producto.stock) {
+            return false; 
+        }
+        else{
+          return true; 
+        }
+      }
+       return true; 
+    } 
+    );    
+  }
+
   aumentarCantidad(idProducto: number): void {
-    this.carritoService.aumentarCantidad(idProducto);
-    this.actualizarCarrito();
+    if(this.validarStock(idProducto)! == true){
+      this.carritoService.aumentarCantidad(idProducto);
+      this.actualizarCarrito();
+    }
+    
+    
   }
 
   disminuirCantidad(idProducto: number): void {
