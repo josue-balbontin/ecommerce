@@ -13,6 +13,7 @@ export default defineConfig({
         'src/app/components/products/products.ts',
         'src/app/components/product/product.ts',
         'src/app/components/carrito/carrito.ts',
+        'src/app/services/Carrito/data-carrito.ts'
         
       ],
       exclude: ['src/**/*.spec.ts']
