@@ -28,11 +28,8 @@ export class Product {
 
   ngOnInit(): void {
     this.supabase.obtenerProductoPorId(Number(this.activatedRoute.snapshot.paramMap.get('id'))).then(product => {
-      this.product = product;
-      if(this.product == null){
-        this.error = true;
-        this.mensajeerror = 'El producto ya no está disponible';
-      }
+      this.product = this.ProductoEsNull(product);
+     
     }
     ).catch(error => {
       this.error = true;
@@ -41,6 +38,14 @@ export class Product {
       this.cdr.detectChanges();
     });
     
+  }
+
+  ProductoEsNull(producto: MProduct | null) {
+     if(producto == null){
+        this.error = true;
+        this.mensajeerror = 'El producto ya no está disponible';
+      }
+    return producto ;
   }
 
   goHome() {
