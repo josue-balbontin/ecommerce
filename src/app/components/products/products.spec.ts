@@ -55,7 +55,7 @@ describe('Componente Products ', () => {
     await new Promise(resolve => setTimeout(resolve, 0)); 
 
     expect(component.error).toBe(true);
-    expect(component.mensajeError).toBe('no se pudo acceder intente más tarde');
+    expect(component.mensajeError).toBe('No se pudo acceder, intente más tarde');
   });
 
 });

@@ -16,6 +16,7 @@ export class Product {
   product: MProduct | null = null;
   error :boolean = false;
   loading: boolean = true;
+  mensajeerror: string = 'no se pudo obtener la información intente más tarde';
 
   constructor(
     private supabase: Supabase,
