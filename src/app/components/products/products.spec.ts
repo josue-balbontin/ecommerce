@@ -58,4 +58,23 @@ describe('Componente Products ', () => {
     expect(component.mensajeError).toBe('No se pudo acceder, intente más tarde');
   });
 
+  it('No hay productos en la base dee datos muestro mensaje', async () => {
+    /* 
+    Dado que la base de datos no tiene absolutamente ningún producto registrado, cuando ingreso a la pantalla principal,
+     entonces la interfaz no se rompe y muestra el mensaje amigable "Aún no hay productos disponibles en la tienda".
+    */
+
+    mockSupabase.obtenerPorductos.mockResolvedValue([]);
+
+    const component = new Products(mockRouter, mockSupabase, mockCdr);
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(component.products.length).toBe(0);
+    expect(component.error).toBe(false);
+
+    expect(component.mensajeError).toBe("Aun no hay productos disponibles en la tienda."); 
+
+
+  });
+
 });
